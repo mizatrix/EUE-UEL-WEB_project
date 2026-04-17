@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EUE | UEL — Cybersecurity Individual Grading Sheet (Print)</title>
+  <title>EUE | UEL — Web Dev Individual Grading Sheet</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -63,10 +63,11 @@
     tbody td { border: 1px solid #ccc; padding: 7px 10px; vertical-align: middle; }
 
     .section-row td { font-weight: 800; font-size: 9.5pt; color: #fff; padding: 5px 10px; }
-    .section-row.c1 td { background: #4f46e5; }
-    .section-row.c2 td { background: #7c3aed; }
-    .section-row.c3 td { background: #db2777; }
-    .section-row.c4 td { background: #0d9488; }
+    .section-row.c1 td { background: #6366f1; }
+    .section-row.c2 td { background: #0ea5e9; }
+    .section-row.c3 td { background: #10b981; }
+    .section-row.c4 td { background: #f43f5e; }
+    .section-row.c5 td { background: #8b5cf6; }
 
     .subtask-row td:first-child { padding-left: 14px; }
     .subtask-row:nth-child(even) td { background: #fafafa; }
@@ -129,13 +130,13 @@
   <!-- ══ HEADER ══ -->
   <div class="header">
     <div>
-      <h1>EUE | UEL — Individual Grading Sheet</h1>
-      <p>Cybersecurity Programme &nbsp;·&nbsp; Foundation Level</p>
+      <h1>EUE | UEL — Web Dev Individual Grading Sheet</h1>
+      <p>Cybersecurity Programme &nbsp;·&nbsp; Web Development Project</p>
     </div>
     <div class="header-right">
       <strong>University:</strong> EUE — UEL Egypt<br>
-      <strong>Academic Year:</strong> 2024 / 2025<br>
-      <strong>Semester:</strong> Spring<br>
+      <strong>Instructor:</strong> Dr. Moataz Samy<br>
+      <strong>T.A:</strong> Steven<br>
       <strong>Date:</strong> _____ / _____ / _______
     </div>
   </div>
@@ -146,47 +147,63 @@
     <div class="info-field"><label>Project Title</label><div class="field-line"></div></div>
     <div class="info-field"><label>Moodle Email (uxxxxxxx@uel.ac.uk)</label><div class="field-line"></div></div>
     <div class="info-field"><label>EUE Email (Name.Sur25@uel.eue.edu.eg)</label><div class="field-line"></div></div>
-    <div class="info-field"><label>Evaluator Name</label><div class="field-line"></div></div>
     <div class="info-field"><label>Team Name</label><div class="field-line"></div></div>
+    <div class="info-field"><label>Project ID</label><div class="field-line"></div></div>
   </div>
 
-  <!-- ══ RUBRIC (condensed — sub-tasks only) ══ -->
+  <!-- ══ RUBRIC TABLE ══ -->
   <table>
     <thead>
       <tr>
-        <th>Sub-Task</th>
+        <th>Criteria / Sub-Task</th>
         <th>Max</th>
         <th>Score</th>
       </tr>
     </thead>
     <tbody>
-      <!-- Section 1 -->
-      <tr class="section-row c1"><td colspan="3">📋 1 — Presentation &amp; Communication (30 pts)</td></tr>
-      <tr class="subtask-row"><td>Communication &amp; Delivery</td><td class="max-col">15</td><td class="score-col"><div class="score-box"></div></td></tr>
-      <tr class="subtask-row"><td>Visual Aids &amp; Slides</td><td class="max-col">15</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <!-- Section 1: UI/UX Design -->
+      <tr class="section-row c1"><td colspan="3">🎨 1 — UI/UX Design (Stitch) — 25 pts</td></tr>
+      <tr class="subtask-row"><td>Design System (colors, typography, spacing tokens)</td><td class="max-col">10</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <tr class="subtask-row"><td>Wireframes &amp; Screen Layouts (Stitch)</td><td class="max-col">8</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <tr class="subtask-row"><td>Responsive Design (mobile + desktop)</td><td class="max-col">7</td><td class="score-col"><div class="score-box"></div></td></tr>
 
-      <!-- Section 2 -->
-      <tr class="section-row c2"><td colspan="3">💻 2 — Technical Work (40 pts)</td></tr>
-      <tr class="subtask-row"><td>Source Code Quality</td><td class="max-col">20</td><td class="score-col"><div class="score-box"></div></td></tr>
-      <tr class="subtask-row"><td>Functionality</td><td class="max-col">20</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <!-- Section 2: Frontend -->
+      <tr class="section-row c2"><td colspan="3">💻 2 — Frontend (Next.js) — 25 pts</td></tr>
+      <tr class="subtask-row"><td>Component Architecture &amp; Reusability</td><td class="max-col">8</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <tr class="subtask-row"><td>App Router, Server/Client Components, Dynamic Routes</td><td class="max-col">8</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <tr class="subtask-row"><td>Loading/Error States &amp; SEO Metadata</td><td class="max-col">5</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <tr class="subtask-row"><td>Code Organization &amp; Modularity</td><td class="max-col">4</td><td class="score-col"><div class="score-box"></div></td></tr>
 
-      <!-- Section 3 -->
-      <tr class="section-row c3"><td colspan="3">📄 3 — Documentation (20 pts)</td></tr>
-      <tr class="subtask-row"><td>Technical Report</td><td class="max-col">20</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <!-- Section 3: Backend -->
+      <tr class="section-row c3"><td colspan="3">🛠️ 3 — Backend (Node.js / Supabase) — 20 pts</td></tr>
+      <tr class="subtask-row"><td>API Routes / Server Actions with Validation</td><td class="max-col">7</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <tr class="subtask-row"><td>Database Design &amp; Supabase Integration</td><td class="max-col">5</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <tr class="subtask-row"><td>Authentication (Signup, Login, Protected Routes)</td><td class="max-col">5</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <tr class="subtask-row"><td>RLS Policies &amp; Security</td><td class="max-col">3</td><td class="score-col"><div class="score-box"></div></td></tr>
 
-      <!-- Section 4 -->
-      <tr class="section-row c4"><td colspan="3">💬 4 — Q&amp;A Defense (10 pts)</td></tr>
-      <tr class="subtask-row"><td>Q&amp;A Responses &amp; Understanding</td><td class="max-col">10</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <!-- Section 4: Code Quality & GitHub -->
+      <tr class="section-row c4"><td colspan="3">🔗 4 — Code Quality &amp; GitHub — 15 pts</td></tr>
+      <tr class="subtask-row"><td>Git History (meaningful commits)</td><td class="max-col">4</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <tr class="subtask-row"><td>README (setup instructions, screenshots, tech stack)</td><td class="max-col">4</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <tr class="subtask-row"><td>Folder Structure &amp; No Exposed Secrets</td><td class="max-col">4</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <tr class="subtask-row"><td>Vercel Deployment (live URL)</td><td class="max-col">3</td><td class="score-col"><div class="score-box"></div></td></tr>
+
+      <!-- Section 5: Presentation & Demo -->
+      <tr class="section-row c5"><td colspan="3">🎤 5 — Presentation &amp; Demo — 15 pts</td></tr>
+      <tr class="subtask-row"><td>Live Demo of Deployed App</td><td class="max-col">5</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <tr class="subtask-row"><td>Architecture &amp; Security Explanation</td><td class="max-col">5</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <tr class="subtask-row"><td>Team Participation &amp; Communication</td><td class="max-col">5</td><td class="score-col"><div class="score-box"></div></td></tr>
     </tbody>
   </table>
 
   <!-- ══ TOTALS ══ -->
   <table class="totals">
     <tbody>
-      <tr><td class="lbl">Presentation &amp; Communication</td><td class="val">_____ / 30</td></tr>
-      <tr><td class="lbl">Technical Work</td><td class="val">_____ / 40</td></tr>
-      <tr><td class="lbl">Documentation</td><td class="val">_____ / 20</td></tr>
-      <tr><td class="lbl">Q&amp;A Defense</td><td class="val">_____ / 10</td></tr>
+      <tr><td class="lbl">🎨 UI/UX Design (Stitch)</td><td class="val">_____ / 25</td></tr>
+      <tr><td class="lbl">💻 Frontend (Next.js)</td><td class="val">_____ / 25</td></tr>
+      <tr><td class="lbl">🛠️ Backend (Node.js / Supabase)</td><td class="val">_____ / 20</td></tr>
+      <tr><td class="lbl">🔗 Code Quality &amp; GitHub</td><td class="val">_____ / 15</td></tr>
+      <tr><td class="lbl">🎤 Presentation &amp; Demo</td><td class="val">_____ / 15</td></tr>
       <tr class="grand"><td class="lbl">★ TOTAL GRADE</td><td class="val">_____ / 100</td></tr>
     </tbody>
   </table>
@@ -204,8 +221,8 @@
 
   <!-- ══ FOOTER ══ -->
   <div class="footer">
-    <span>EUE — University of East London Egypt &nbsp;·&nbsp; Cybersecurity — Foundation Level</span>
-    <span>individual-grading-sheet v1.0 · Spring 2025</span>
+    <span>EUE — University of East London Egypt &nbsp;·&nbsp; Cybersecurity — Web Development Project</span>
+    <span>Supervised by Dr. Moataz Samy &amp; T.A Steven &nbsp;·&nbsp; Spring 2025</span>
   </div>
 
 </body>
