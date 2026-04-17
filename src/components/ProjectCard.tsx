@@ -11,9 +11,9 @@ export default function ProjectCard({ project, onClick, takenBy }: ProjectCardPr
   return (
     <div
       className={`${styles.card} ${takenBy ? styles.taken : ""}`}
-      onClick={takenBy ? undefined : onClick}
+      onClick={onClick}
       style={{
-        cursor: takenBy ? 'not-allowed' : 'pointer',
+        cursor: 'pointer',
         '--accent': project.accent,
       } as React.CSSProperties}
     >
