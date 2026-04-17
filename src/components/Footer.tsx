@@ -8,7 +8,7 @@ export default function Footer() {
           &copy; {new Date().getFullYear()} EUE | UEL Web Dev Hub. Built for First-Year Cybersecurity Students.
         </p>
         <div className={styles.credits}>
-          <span>Supervised by <strong>Dr. Moataz Samy</strong></span>
+          <span>Supervised by <strong>Dr. Moataz Samy</strong> &amp; <strong>T.A Steven</strong></span>
         </div>
       </div>
     </footer>

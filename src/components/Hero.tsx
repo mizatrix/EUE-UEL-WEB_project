@@ -11,7 +11,8 @@ export default function Hero() {
           First-year cybersecurity students: Design with{" "}
           <strong>Stitch</strong>, build with <strong>Next.js</strong> &amp;{" "}
           <strong>Node.js</strong>, and deploy your own full-stack web
-          application. Supervised by <strong>Dr. Motaz Samy</strong>.
+          application. Supervised by <strong>Dr. Moataz Samy</strong> &amp;{" "}
+          <strong>T.A Steven</strong>.
         </p>
         <div className={styles.buttons}>
           <a href="#projects" className={`${styles.btn} ${styles.primaryBtn}`}>
