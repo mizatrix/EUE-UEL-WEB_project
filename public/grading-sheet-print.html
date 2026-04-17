@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EUE | UEL — Web Dev Individual Grading Sheet</title>
+  <title>EUE | UEL — Web Dev Individual Grading Sheet (Print)</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -62,8 +62,15 @@
     thead th:first-child { text-align: left; }
     tbody td { border: 1px solid #ccc; padding: 7px 10px; vertical-align: middle; }
 
-    .criteria-row td:first-child { font-weight: 700; }
-    .criteria-row:nth-child(even) td { background: #fafafa; }
+    .section-row td { font-weight: 800; font-size: 9.5pt; color: #fff; padding: 5px 10px; }
+    .section-row.c1 td { background: #4f46e5; }
+    .section-row.c2 td { background: #7c3aed; }
+    .section-row.c3 td { background: #db2777; }
+    .section-row.c4 td { background: #0d9488; }
+    .section-row.c5 td { background: #f59e0b; }
+
+    .subtask-row td:first-child { padding-left: 14px; }
+    .subtask-row:nth-child(even) td { background: #fafafa; }
 
     .score-col { text-align: center; width: 55px; }
     .max-col   { text-align: center; width: 45px; font-size: 9pt; color: #666; }
@@ -138,33 +145,57 @@
   <div class="info-grid">
     <div class="info-field"><label>Student Name</label><div class="field-line"></div></div>
     <div class="info-field"><label>Student ID</label><div class="field-line"></div></div>
-    <div class="info-field"><label>UEL Email (uxxxxxxx@uel.ac.uk)</label><div class="field-line"></div></div>
+    <div class="info-field"><label>UEL Moodle Email (uxxxxxxx@uel.ac.uk)</label><div class="field-line"></div></div>
     <div class="info-field"><label>EUE Email (Name.Sur25@uel.eue.edu.eg)</label><div class="field-line"></div></div>
     <div class="info-field"><label>Team Name</label><div class="field-line"></div></div>
     <div class="info-field"><label>Project Title</label><div class="field-line"></div></div>
   </div>
 
-  <!-- ══ RUBRIC (Brief — one row per section) ══ -->
+  <!-- ══ RUBRIC (condensed — sub-tasks only) ══ -->
   <table>
     <thead>
       <tr>
-        <th>Criteria</th>
+        <th>Sub-Task</th>
         <th>Max</th>
         <th>Score</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="criteria-row"><td>🎨 UI/UX Design (Stitch)</td><td class="max-col">25</td><td class="score-col"><div class="score-box"></div></td></tr>
-      <tr class="criteria-row"><td>💻 Frontend (Next.js)</td><td class="max-col">25</td><td class="score-col"><div class="score-box"></div></td></tr>
-      <tr class="criteria-row"><td>🛠️ Backend (Node.js / Supabase)</td><td class="max-col">20</td><td class="score-col"><div class="score-box"></div></td></tr>
-      <tr class="criteria-row"><td>🔗 Code Quality &amp; GitHub</td><td class="max-col">15</td><td class="score-col"><div class="score-box"></div></td></tr>
-      <tr class="criteria-row"><td>🎤 Presentation &amp; Demo</td><td class="max-col">15</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <!-- Section 1 -->
+      <tr class="section-row c1"><td colspan="3">🎨 1 — UI/UX Design &amp; Stitch (25 pts)</td></tr>
+      <tr class="subtask-row"><td>Design System &amp; Wireframes</td><td class="max-col">13</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <tr class="subtask-row"><td>Responsive Design</td><td class="max-col">12</td><td class="score-col"><div class="score-box"></div></td></tr>
+
+      <!-- Section 2 -->
+      <tr class="section-row c2"><td colspan="3">💻 2 — Frontend / Next.js (25 pts)</td></tr>
+      <tr class="subtask-row"><td>Component Architecture</td><td class="max-col">13</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <tr class="subtask-row"><td>Routing, States &amp; SEO</td><td class="max-col">12</td><td class="score-col"><div class="score-box"></div></td></tr>
+
+      <!-- Section 3 -->
+      <tr class="section-row c3"><td colspan="3">🛠️ 3 — Backend / Supabase (20 pts)</td></tr>
+      <tr class="subtask-row"><td>API &amp; Database Integration</td><td class="max-col">10</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <tr class="subtask-row"><td>Auth &amp; Security (RLS)</td><td class="max-col">10</td><td class="score-col"><div class="score-box"></div></td></tr>
+
+      <!-- Section 4 -->
+      <tr class="section-row c4"><td colspan="3">🔗 4 — Code Quality &amp; GitHub (15 pts)</td></tr>
+      <tr class="subtask-row"><td>Git History &amp; README</td><td class="max-col">8</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <tr class="subtask-row"><td>Deployment (Vercel)</td><td class="max-col">7</td><td class="score-col"><div class="score-box"></div></td></tr>
+
+      <!-- Section 5 -->
+      <tr class="section-row c5"><td colspan="3">🎤 5 — Presentation &amp; Demo (15 pts)</td></tr>
+      <tr class="subtask-row"><td>Live Demo &amp; Explanation</td><td class="max-col">8</td><td class="score-col"><div class="score-box"></div></td></tr>
+      <tr class="subtask-row"><td>Communication &amp; Q&amp;A</td><td class="max-col">7</td><td class="score-col"><div class="score-box"></div></td></tr>
     </tbody>
   </table>
 
   <!-- ══ TOTALS ══ -->
   <table class="totals">
     <tbody>
+      <tr><td class="lbl">UI/UX Design &amp; Stitch</td><td class="val">_____ / 25</td></tr>
+      <tr><td class="lbl">Frontend / Next.js</td><td class="val">_____ / 25</td></tr>
+      <tr><td class="lbl">Backend / Supabase</td><td class="val">_____ / 20</td></tr>
+      <tr><td class="lbl">Code Quality &amp; GitHub</td><td class="val">_____ / 15</td></tr>
+      <tr><td class="lbl">Presentation &amp; Demo</td><td class="val">_____ / 15</td></tr>
       <tr class="grand"><td class="lbl">★ TOTAL GRADE</td><td class="val">_____ / 100</td></tr>
     </tbody>
   </table>
@@ -175,8 +206,8 @@
 
   <!-- ══ SIGNATURES ══ -->
   <div class="sig-row">
-    <div class="sig-block"><label>Instructor: Dr. Moataz Samy</label><div class="sig-line"></div></div>
-    <div class="sig-block"><label>T.A: Steven</label><div class="sig-line"></div></div>
+    <div class="sig-block"><label>Dr. Moataz Samy (Instructor)</label><div class="sig-line"></div></div>
+    <div class="sig-block"><label>T.A Steven</label><div class="sig-line"></div></div>
     <div class="sig-block"><label>Student Signature</label><div class="sig-line"></div></div>
     <div class="sig-block"><label>Date</label><div class="sig-line"></div></div>
   </div>
