@@ -1,9 +1,19 @@
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
+import { projectsData } from '@/data/projects'
+import AdminTabs from './AdminTabs'
 
-export default async function AdminDashboard() {
+export default async function AdminDashboard({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
   const supabase = await createClient()
+  const resolvedParams = await searchParams
+
+  const error = resolvedParams?.error as string | undefined
+  const success = resolvedParams?.success as string | undefined
 
   // Authenticate user and verify role
   const { data: { user } } = await supabase.auth.getUser()
@@ -11,7 +21,7 @@ export default async function AdminDashboard() {
 
   const { data: profile } = await supabase
     .from('profiles')
-    .select('role')
+    .select('role, full_name')
     .eq('id', user.id)
     .single()
 
@@ -19,15 +29,54 @@ export default async function AdminDashboard() {
     redirect('/dashboard')
   }
 
+  // Fetch all teams with submissions
+  const { data: teams } = await supabase
+    .from('teams')
+    .select('*, submissions(*)')
+    .order('created_at', { ascending: false })
+
   // Fetch all submissions with team details
   const { data: submissions } = await supabase
     .from('submissions')
     .select(`
       *,
-      teams ( team_name, project_id, members ),
-      profiles!submitted_by ( full_name, student_id )
+      teams ( team_name, project_id, members )
     `)
     .order('created_at', { ascending: false })
+
+  // Fetch all student profiles
+  const { data: students } = await supabase
+    .from('profiles')
+    .select('*')
+    .eq('role', 'student')
+    .order('created_at', { ascending: false })
+
+  // Fetch idea submissions
+  const { data: ideas } = await supabase
+    .from('project_ideas')
+    .select('*')
+    .order('created_at', { ascending: false })
+
+  // Stats
+  const totalTeams = teams?.length || 0
+  const totalSubmissions = submissions?.length || 0
+  const gradedCount = submissions?.filter(s => s.status === 'graded').length || 0
+  const pendingCount = totalSubmissions - gradedCount
+  const totalStudents = students?.length || 0
+  const totalIdeas = ideas?.length || 0
+
+  // Enrich teams with project title
+  const enrichedTeams = (teams || []).map(team => ({
+    ...team,
+    projectTitle: projectsData.find(p => p.id === team.project_id)?.title || `Project #${team.project_id}`,
+    projectCategory: projectsData.find(p => p.id === team.project_id)?.category || 'Unknown',
+  }))
+
+  // Enrich submissions with project title
+  const enrichedSubmissions = (submissions || []).map(sub => ({
+    ...sub,
+    projectTitle: projectsData.find(p => p.id === sub.teams?.project_id)?.title || `Project #${sub.teams?.project_id}`,
+  }))
 
   return (
     <>
@@ -49,81 +98,82 @@ export default async function AdminDashboard() {
         </div>
       </header>
 
-      <div className="container" style={{ paddingTop: '4rem', paddingBottom: '5rem' }}>
+      <div className="container" style={{ paddingTop: '3rem', paddingBottom: '5rem' }}>
+        {/* Header */}
         <div className="section-header">
           <div>
-            <span className="badge" style={{ marginBottom: '0.5rem', background: 'rgba(245, 158, 11, 0.1)', color: '#f59e0b', border: '1px solid rgba(245, 158, 11, 0.15)' }}>Instructor Panel</span>
-            <h2 style={{ marginTop: '0.5rem' }}>Submission Review</h2>
+            <span className="badge" style={{ marginBottom: '0.5rem', background: 'rgba(245, 158, 11, 0.1)', color: '#f59e0b', border: '1px solid rgba(245, 158, 11, 0.15)' }}>
+              <i className="fa-solid fa-shield-halved" style={{ marginRight: '0.3rem' }}></i>
+              Instructor Panel
+            </span>
+            <h2 style={{ marginTop: '0.5rem' }}>
+              Welcome, {profile?.full_name || user.email?.split('@')[0]}
+            </h2>
           </div>
         </div>
 
-        <div className="glass-card" style={{ padding: '2rem', overflowX: 'auto' }}>
-          <h3 style={{ marginBottom: '1.5rem' }}>
-            <i className="fa-solid fa-clipboard-list" style={{ marginRight: '0.5rem', color: 'var(--primary-color)' }}></i>
-            All Submissions
-          </h3>
-          
-          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-            <thead>
-              <tr style={{ borderBottom: '1px solid var(--glass-border)' }}>
-                <th style={{ padding: '1rem', color: 'var(--text-muted)', fontWeight: 600 }}>Team</th>
-                <th style={{ padding: '1rem', color: 'var(--text-muted)', fontWeight: 600 }}>Project</th>
-                <th style={{ padding: '1rem', color: 'var(--text-muted)', fontWeight: 600 }}>Link</th>
-                <th style={{ padding: '1rem', color: 'var(--text-muted)', fontWeight: 600 }}>Status</th>
-                <th style={{ padding: '1rem', color: 'var(--text-muted)', fontWeight: 600 }}>Grade</th>
-              </tr>
-            </thead>
-            <tbody>
-              {submissions?.length === 0 ? (
-                <tr>
-                  <td colSpan={5} style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-muted)' }}>
-                    <i className="fa-solid fa-inbox" style={{ fontSize: '2rem', display: 'block', marginBottom: '0.5rem' }}></i>
-                    No submissions found yet.
-                  </td>
-                </tr>
-              ) : (
-                submissions?.map((sub) => (
-                  <tr key={sub.id} style={{ borderBottom: '1px solid var(--glass-border)' }}>
-                     <td style={{ padding: '1rem' }}>
-                      <strong>{sub.teams?.team_name}</strong><br/>
-                      <small style={{ color: 'var(--text-muted)' }}>by: {sub.profiles?.full_name || 'Unknown'}</small>
-                    </td>
-                    <td style={{ padding: '1rem' }}>ID: {sub.teams?.project_id}</td>
-                    <td style={{ padding: '1rem' }}>
-                      <a href={sub.github_url} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--primary-color)', display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
-                        <i className="fa-brands fa-github"></i> View Code
-                      </a>
-                    </td>
-                    <td style={{ padding: '1rem' }}>
-                      <span style={{ 
-                        padding: '0.25rem 0.75rem', 
-                        borderRadius: '20px', 
-                        background: sub.status === 'graded' ? 'rgba(16, 185, 129, 0.08)' : 'rgba(245, 158, 11, 0.08)',
-                        color: sub.status === 'graded' ? '#10b981' : '#f59e0b',
-                        fontSize: '0.85rem',
-                        fontWeight: 600
-                      }}>
-                        {sub.status}
-                      </span>
-                    </td>
-                    <td style={{ padding: '1rem' }}>
-                      <form action="/actions/grade-submission" method="POST" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                        <input type="hidden" name="submission_id" value={sub.id} />
-                        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                          <input type="number" name="grade" placeholder="0-100" min={0} max={100} defaultValue={sub.grade} style={{ width: '75px', padding: '0.5rem', borderRadius: '8px', background: 'rgba(255,255,255,0.8)', border: '1px solid rgba(99,102,241,0.2)', color: '#1e293b', textAlign: 'center' }} />
-                          <button type="submit" className="btn primary-btn" style={{ padding: '0.5rem 1rem', fontSize: '0.85rem' }}>
-                            <i className="fa-solid fa-check"></i>
-                          </button>
-                        </div>
-                        <input type="text" name="feedback" placeholder="Feedback..." defaultValue={sub.feedback || ''} style={{ width: '100%', padding: '0.4rem 0.6rem', borderRadius: '8px', background: 'rgba(255,255,255,0.8)', border: '1px solid rgba(99,102,241,0.2)', color: '#1e293b', fontSize: '0.8rem' }} />
-                      </form>
-                    </td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+        {/* Feedback Messages */}
+        {error && (
+          <div style={{ padding: '0.75rem 1rem', marginBottom: '1.5rem', background: 'rgba(244, 63, 94, 0.08)', border: '1px solid rgba(244, 63, 94, 0.2)', color: '#e11d48', borderRadius: '12px', textAlign: 'center', fontSize: '0.9rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+            <i className="fa-solid fa-triangle-exclamation"></i>
+            {error}
+          </div>
+        )}
+        {success && (
+          <div style={{ padding: '0.75rem 1rem', marginBottom: '1.5rem', background: 'rgba(16, 185, 129, 0.08)', border: '1px solid rgba(16, 185, 129, 0.2)', color: '#059669', borderRadius: '12px', textAlign: 'center', fontSize: '0.9rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}>
+            <i className="fa-solid fa-circle-check"></i>
+            {success}
+          </div>
+        )}
+
+        {/* Overview Stats */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1.25rem', marginBottom: '2.5rem' }}>
+          <div className="glass-card" style={{ padding: '1.5rem', textAlign: 'center' }}>
+            <div style={{ fontSize: '2rem', fontWeight: 800, color: '#6366f1' }}>{totalTeams}</div>
+            <div style={{ color: '#64748b', fontSize: '0.85rem', fontWeight: 600, marginTop: '0.25rem' }}>
+              <i className="fa-solid fa-users" style={{ marginRight: '0.3rem' }}></i>Teams
+            </div>
+          </div>
+          <div className="glass-card" style={{ padding: '1.5rem', textAlign: 'center' }}>
+            <div style={{ fontSize: '2rem', fontWeight: 800, color: '#10b981' }}>{totalSubmissions}</div>
+            <div style={{ color: '#64748b', fontSize: '0.85rem', fontWeight: 600, marginTop: '0.25rem' }}>
+              <i className="fa-solid fa-code-branch" style={{ marginRight: '0.3rem' }}></i>Submissions
+            </div>
+          </div>
+          <div className="glass-card" style={{ padding: '1.5rem', textAlign: 'center' }}>
+            <div style={{ fontSize: '2rem', fontWeight: 800, color: '#f59e0b' }}>{pendingCount}</div>
+            <div style={{ color: '#64748b', fontSize: '0.85rem', fontWeight: 600, marginTop: '0.25rem' }}>
+              <i className="fa-solid fa-clock" style={{ marginRight: '0.3rem' }}></i>Pending
+            </div>
+          </div>
+          <div className="glass-card" style={{ padding: '1.5rem', textAlign: 'center' }}>
+            <div style={{ fontSize: '2rem', fontWeight: 800, color: '#22c55e' }}>{gradedCount}</div>
+            <div style={{ color: '#64748b', fontSize: '0.85rem', fontWeight: 600, marginTop: '0.25rem' }}>
+              <i className="fa-solid fa-check-circle" style={{ marginRight: '0.3rem' }}></i>Graded
+            </div>
+          </div>
+          <div className="glass-card" style={{ padding: '1.5rem', textAlign: 'center' }}>
+            <div style={{ fontSize: '2rem', fontWeight: 800, color: '#8b5cf6' }}>{totalStudents}</div>
+            <div style={{ color: '#64748b', fontSize: '0.85rem', fontWeight: 600, marginTop: '0.25rem' }}>
+              <i className="fa-solid fa-graduation-cap" style={{ marginRight: '0.3rem' }}></i>Students
+            </div>
+          </div>
+          <div className="glass-card" style={{ padding: '1.5rem', textAlign: 'center' }}>
+            <div style={{ fontSize: '2rem', fontWeight: 800, color: '#ec4899' }}>{totalIdeas}</div>
+            <div style={{ color: '#64748b', fontSize: '0.85rem', fontWeight: 600, marginTop: '0.25rem' }}>
+              <i className="fa-solid fa-lightbulb" style={{ marginRight: '0.3rem' }}></i>Ideas
+            </div>
+          </div>
         </div>
+
+        {/* Tabs */}
+        <AdminTabs
+          teams={enrichedTeams}
+          submissions={enrichedSubmissions}
+          students={students || []}
+          ideas={ideas || []}
+          projectsData={projectsData}
+        />
       </div>
     </>
   )
