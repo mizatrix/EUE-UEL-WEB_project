@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AASTMT BIS | Python Projects</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Background Elements for Glassmorphism -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <header class="glass-nav">
+        <div class="container">
+            <h1 class="logo"><i class="fa-brands fa-python"></i> AASTMT BIS <span>Python Hub</span></h1>
+            <nav>
+                <a href="#projects">Projects</a>
+                <a href="#about">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="about">
+            <div class="container">
+                <span class="badge">12th Week Project</span>
+                <h2>Introduction to Programming</h2>
+                <p>Explore the 20 comprehensive Python projects assigned by <strong>Dr. Motaz Samy</strong> & <strong>TA. Toka Sherif</strong>. Build, learn, and master the fundamentals of software engineering.</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn primary-btn">Explore Projects <i class="fa-solid fa-arrow-down"></i></a>
+                    <button id="openRegisterBtn" class="btn secondary-btn">Register Team <i class="fa-solid fa-users"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects-section" id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Available Projects</h2>
+                    <div class="search-container">
+                        <i class="fa-solid fa-search"></i>
+                        <input type="text" id="searchBar" placeholder="Search projects...">
+                    </div>
+                </div>
+
+                <div class="grid" id="projects-grid">
+                    <!-- Cards will be injected here by JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="glass-footer">
+        <div class="container">
+            <p>&copy; 2026 AASTMT BIS. Designed for educational purposes.</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="projectModal">
+        <div class="modal-content glass-card">
+            <button class="close-btn" id="closeModal"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header">
+                <div class="modal-icon"><i id="m-icon" class="fa-solid"></i></div>
+                <h3 id="m-title">Project Title</h3>
+            </div>
+            <p class="modal-desc" id="m-desc">Description</p>
+            <h4><i class="fa-solid fa-list-check"></i> Required Functionalities:</h4>
+            <ul class="features-list" id="m-features">
+                <!-- Features injected by JS -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Registration Modal -->
+    <div class="modal-overlay" id="registerModal">
+        <div class="modal-content glass-card form-card">
+            <button class="close-btn" id="closeRegisterModal"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-header">
+                <div class="modal-icon"><i class="fa-solid fa-users"></i></div>
+                <h3>Register Your Team</h3>
+            </div>
+            <form id="teamRegisterForm">
+                <div class="form-group">
+                    <label for="projectSelect">Selected Project <span class="required">*</span></label>
+                    <select id="projectSelect" required>
+                        <option value="">-- Choose a Project --</option>
+                        <!-- Populated by JS -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="teamIdea">Team Name / Custom Idea</label>
+                    <input type="text" id="teamIdea" placeholder="e.g. The Pythons - Advanced AI Agent">
+                </div>
+                <div class="form-group">
+                    <label for="leaderName">Team Leader Name & ID <span class="required">*</span></label>
+                    <input type="text" id="leaderName" required placeholder="e.g. Ahmed Ali - 2110001">
+                </div>
+                <div class="form-group">
+                    <label for="membersList">Team Members (Names & IDs)</label>
+                    <textarea id="membersList" rows="3" placeholder="1. Sara Ahmed - 2110002&#10;2. Omar Sayed - 2110003"></textarea>
+                </div>
+                <div class="form-messages" id="formMessages"></div>
+                <button type="submit" class="btn primary-btn submit-btn" id="submitTeamBtn">Register Now <i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

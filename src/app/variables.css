@@ -1,0 +1,45 @@
+:root {
+    /* ═══════════════════════════════════════════
+       BRIGHT VIBRANT THEME — EUE | UEL Web Dev Hub
+       ═══════════════════════════════════════════ */
+
+    /* Background: Clean off-white */
+    --bg-color: #f0f4ff;
+
+    /* Primary: Electric Indigo */
+    --primary-color: #6366f1;
+    --primary-light: #818cf8;
+    --primary-dark: #4f46e5;
+
+    /* Secondary: Coral Rose */
+    --secondary-color: #f43f5e;
+    --secondary-light: #fb7185;
+
+    /* Accent: Emerald */
+    --accent-color: #10b981;
+    --accent-light: #34d399;
+
+    /* Text */
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --text-light: #94a3b8;
+
+    /* Glassmorphism — Light frosted glass */
+    --glass-bg: rgba(255, 255, 255, 0.72);
+    --glass-border: rgba(99, 102, 241, 0.18);
+    --glass-shadow: 0 8px 32px rgba(99, 102, 241, 0.10);
+
+    /* Responsive Spacing Tokens */
+    --container-padding: clamp(1rem, 5vw, 2rem);
+    --section-padding: clamp(4rem, 10vw, 8rem);
+
+    /* Fluid Typography Scale */
+    --fs-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.85rem);
+    --fs-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+    --fs-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    --fs-lg: clamp(1.125rem, 1.05rem + 0.375vw, 1.25rem);
+    --fs-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+    --fs-2xl: clamp(1.5rem, 1.35rem + 0.75vw, 2rem);
+    --fs-3xl: clamp(2rem, 1.75rem + 1.25vw, 3rem);
+    --fs-hero: clamp(2.5rem, 2rem + 2.5vw, 4.5rem);
+}

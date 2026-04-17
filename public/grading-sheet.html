@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EUE | UEL — Project Grading Sheet</title>
+  <style>
+    /* ── Reset & base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 11pt;
+      color: #1a1a2e;
+      background: #fff;
+      padding: 18mm 15mm;
+      line-height: 1.4;
+    }
+
+    /* ── Header ── */
+    .page-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      border-bottom: 3px solid #4f46e5;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+      gap: 12px;
+    }
+    .header-left h1 {
+      font-size: 16pt;
+      font-weight: 800;
+      color: #4f46e5;
+      letter-spacing: -0.3px;
+    }
+    .header-left p {
+      font-size: 9pt;
+      color: #555;
+      margin-top: 2px;
+    }
+    .header-right {
+      text-align: right;
+      font-size: 9pt;
+      color: #555;
+      white-space: nowrap;
+    }
+    .header-right strong { color: #1a1a2e; }
+
+    /* ── Info grid ── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 20px;
+      margin-bottom: 16px;
+      background: #f5f5ff;
+      border: 1px solid #d0cfff;
+      border-radius: 6px;
+      padding: 10px 14px;
+    }
+    .info-field label {
+      display: block;
+      font-size: 8pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #4f46e5;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+    .info-field .field-line {
+      border-bottom: 1px solid #999;
+      min-height: 18px;
+      width: 100%;
+    }
+
+    /* ── Section heading ── */
+    .section-title {
+      font-size: 10pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 4px 4px 0 0;
+      margin-top: 14px;
+    }
+    .section-title.color-presentation { background: #4f46e5; }
+    .section-title.color-technical    { background: #7c3aed; }
+    .section-title.color-documentation{ background: #db2777; }
+    .section-title.color-qa           { background: #0d9488; }
+
+    /* ── Rubric table ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+      margin-bottom: 2px;
+    }
+    thead th {
+      background: #eef2ff;
+      color: #3730a3;
+      font-weight: 700;
+      font-size: 8.5pt;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      padding: 5px 8px;
+      border: 1px solid #c7d2fe;
+      text-align: center;
+    }
+    thead th.criterion-col { text-align: left; }
+    tbody td {
+      border: 1px solid #ddd;
+      padding: 5px 8px;
+      vertical-align: middle;
+    }
+    tbody tr:nth-child(even) td { background: #fafafa; }
+    .sub-group-row td {
+      background: #f0f0ff;
+      font-weight: 700;
+      font-size: 8.5pt;
+      color: #3730a3;
+      padding: 4px 8px;
+    }
+    .score-cell {
+      text-align: center;
+      width: 52px;
+      font-size: 9pt;
+    }
+    .score-box {
+      display: inline-block;
+      width: 36px;
+      height: 20px;
+      border: 1.5px solid #aaa;
+      border-radius: 3px;
+      background: #fff;
+    }
+    .max-pts {
+      font-size: 8pt;
+      color: #888;
+      text-align: center;
+      width: 40px;
+    }
+
+    /* ── Totals row ── */
+    .totals-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 10pt;
+    }
+    .totals-table td {
+      border: 1.5px solid #4f46e5;
+      padding: 6px 10px;
+    }
+    .totals-table .label-cell {
+      font-weight: 700;
+      color: #4f46e5;
+      width: 60%;
+    }
+    .totals-table .value-cell {
+      text-align: center;
+      width: 20%;
+    }
+    .totals-table .grand-row td {
+      background: #4f46e5;
+      color: #fff;
+      font-weight: 800;
+      font-size: 11pt;
+    }
+
+    /* ── Members table ── */
+    .members-section { margin-top: 16px; }
+    .members-section h3 {
+      font-size: 10pt;
+      font-weight: 800;
+      color: #4f46e5;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .members-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9pt;
+    }
+    .members-table th {
+      background: #eef2ff;
+      color: #3730a3;
+      font-weight: 700;
+      padding: 5px 8px;
+      border: 1px solid #c7d2fe;
+      text-align: left;
+      font-size: 8.5pt;
+      text-transform: uppercase;
+    }
+    .members-table td {
+      border: 1px solid #ddd;
+      padding: 20px 8px 5px;
+      font-size: 9pt;
+    }
+
+    /* ── Signature block ── */
+    .signature-row {
+      display: flex;
+      gap: 30px;
+      margin-top: 18px;
+    }
+    .sig-block {
+      flex: 1;
+    }
+    .sig-block label {
+      font-size: 8pt;
+      font-weight: 700;
+      color: #4f46e5;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: block;
+      margin-bottom: 24px;
+    }
+    .sig-line {
+      border-bottom: 1.5px solid #333;
+      width: 100%;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      margin-top: 14px;
+      border-top: 1px solid #ccc;
+      padding-top: 6px;
+      font-size: 7.5pt;
+      color: #999;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ── Print ── */
+    @media print {
+      body { padding: 10mm 12mm; }
+      .no-print { display: none; }
+      @page { size: A4; margin: 10mm; }
+    }
+
+    /* ── Print button (screen only) ── */
+    .print-btn {
+      display: block;
+      width: fit-content;
+      margin: 0 auto 20px;
+      padding: 10px 28px;
+      background: #4f46e5;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 11pt;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+    }
+    .print-btn:hover { background: #4338ca; }
+    @media print { .print-btn { display: none; } }
+  </style>
+</head>
+<body>
+
+  <button class="print-btn no-print" onclick="window.print()">🖨️ Print / Save as PDF</button>
+
+  <!-- ══ PAGE HEADER ══ -->
+  <div class="page-header">
+    <div class="header-left">
+      <h1>EUE | UEL — Project Grading Sheet</h1>
+      <p>Faculty of Business &amp; Technology &nbsp;·&nbsp; Business Information Systems (BIS)</p>
+    </div>
+    <div class="header-right">
+      <strong>University:</strong> EUE — UEL Egypt<br>
+      <strong>Academic Year:</strong> 2024 / 2025<br>
+      <strong>Semester:</strong> Spring<br>
+      <strong>Date:</strong> _____ / _____ / _______
+    </div>
+  </div>
+
+  <!-- ══ TEAM INFO ══ -->
+  <div class="info-grid">
+    <div class="info-field">
+      <label>Team Name</label>
+      <div class="field-line"></div>
+    </div>
+    <div class="info-field">
+      <label>Project Title</label>
+      <div class="field-line"></div>
+    </div>
+    <div class="info-field">
+      <label>Evaluator Name</label>
+      <div class="field-line"></div>
+    </div>
+    <div class="info-field">
+      <label>Presentation Slot / Time</label>
+      <div class="field-line"></div>
+    </div>
+  </div>
+
+  <!-- ══ SECTION 1: PRESENTATION ══ -->
+  <div class="section-title color-presentation">📋 1 — Presentation &amp; Communication &nbsp;(out of 30 pts)</div>
+  <table>
+    <thead>
+      <tr>
+        <th class="criterion-col">Criterion</th>
+        <th>Excellent<br><small>5</small></th>
+        <th>Good<br><small>4</small></th>
+        <th>Acceptable<br><small>3</small></th>
+        <th>Needs Work<br><small>2–1</small></th>
+        <th class="score-cell">Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="sub-group-row"><td colspan="6">Communication &amp; Delivery</td></tr>
+      <tr>
+        <td>Professional attire and confident posture</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+      <tr>
+        <td>Clear, audible, and well-paced speaking style</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+      <tr>
+        <td>Eye contact with the audience / evaluators</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+      <tr>
+        <td>Fluent transitions between team members</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+      <tr class="sub-group-row"><td colspan="6">Visual Aids &amp; Slides</td></tr>
+      <tr>
+        <td>Clean, readable slides with consistent design</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+      <tr>
+        <td>Effective use of diagrams and flowcharts</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+      <tr>
+        <td>No text-heavy slides (keywords, not paragraphs)</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+      <tr>
+        <td>Proper EUE | UEL branding on slides</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ══ SECTION 2: TECHNICAL ══ -->
+  <div class="section-title color-technical">💻 2 — Technical Work &nbsp;(out of 40 pts)</div>
+  <table>
+    <thead>
+      <tr>
+        <th class="criterion-col">Criterion</th>
+        <th>Excellent<br><small>5</small></th>
+        <th>Good<br><small>4</small></th>
+        <th>Acceptable<br><small>3</small></th>
+        <th>Needs Work<br><small>2–1</small></th>
+        <th class="score-cell">Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="sub-group-row"><td colspan="6">Source Code Quality</td></tr>
+      <tr>
+        <td>Clean, DRY (Don't Repeat Yourself) code</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+      <tr>
+        <td>Meaningful variable and function names</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+      <tr>
+        <td>Proper indentation and commenting</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+      <tr>
+        <td>Effective exception handling (try-except)</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+      <tr class="sub-group-row"><td colspan="6">Functionality</td></tr>
+      <tr>
+        <td>Application runs without errors</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+      <tr>
+        <td>All core features are implemented</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+      <tr>
+        <td>Logical flow and correct data processing</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+      <tr>
+        <td>Smart UI/UX (console or GUI)</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ══ SECTION 3: DOCUMENTATION ══ -->
+  <div class="section-title color-documentation">📄 3 — Documentation &nbsp;(out of 20 pts)</div>
+  <table>
+    <thead>
+      <tr>
+        <th class="criterion-col">Criterion</th>
+        <th>Excellent<br><small>5</small></th>
+        <th>Good<br><small>4</small></th>
+        <th>Acceptable<br><small>3</small></th>
+        <th>Needs Work<br><small>2–1</small></th>
+        <th class="score-cell">Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="sub-group-row"><td colspan="6">Technical Report</td></tr>
+      <tr>
+        <td>Clear problem definition and proposed solution</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+      <tr>
+        <td>Detailed flowcharts and logic explanation</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+      <tr>
+        <td>Code snippets with clear explanations</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+      <tr>
+        <td>Reflection and future enhancements section</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ══ SECTION 4: Q&A ══ -->
+  <div class="section-title color-qa">💬 4 — Q&amp;A Defense &nbsp;(out of 10 pts)</div>
+  <table>
+    <thead>
+      <tr>
+        <th class="criterion-col">Criterion</th>
+        <th>Excellent<br><small>5</small></th>
+        <th>Good<br><small>4</small></th>
+        <th>Acceptable<br><small>3</small></th>
+        <th>Needs Work<br><small>2–1</small></th>
+        <th class="score-cell">Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Answering logic-related questions accurately</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+      <tr>
+        <td>Explaining specific code blocks on demand</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+      <tr>
+        <td>Demonstrating deep understanding of the project</td>
+        <td></td><td></td><td></td><td></td>
+        <td class="score-cell"><div class="score-box"></div></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ══ TOTALS ══ -->
+  <table class="totals-table" style="margin-top:16px;">
+    <tbody>
+      <tr>
+        <td class="label-cell">Presentation &amp; Communication Score</td>
+        <td class="value-cell">_____ / 30</td>
+        <td style="font-size:8pt;color:#666;" rowspan="5">
+          <em>Fill in totals after<br>tallying each section</em>
+        </td>
+      </tr>
+      <tr>
+        <td class="label-cell">Technical Work Score</td>
+        <td class="value-cell">_____ / 40</td>
+      </tr>
+      <tr>
+        <td class="label-cell">Documentation Score</td>
+        <td class="value-cell">_____ / 20</td>
+      </tr>
+      <tr>
+        <td class="label-cell">Q&amp;A Defense Score</td>
+        <td class="value-cell">_____ / 10</td>
+      </tr>
+      <tr class="grand-row">
+        <td class="label-cell">★ TOTAL GRADE</td>
+        <td class="value-cell">_____ / 100</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ══ MEMBERS LIST ══ -->
+  <div class="members-section">
+    <h3>Team Members</h3>
+    <table class="members-table">
+      <thead>
+        <tr>
+          <th style="width:5%">#</th>
+          <th style="width:30%">Full Name</th>
+          <th style="width:30%">Moodle Email (uxxxxxxx@uel.ac.uk)</th>
+          <th style="width:30%">EUE Email (Name.Sur25@uel.eue.edu.eg)</th>
+          <th style="width:5%">Q&amp;A</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>2</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>3</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>4</td><td></td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ══ COMMENTS ══ -->
+  <div style="margin-top:16px;">
+    <strong style="font-size:9pt;color:#4f46e5;text-transform:uppercase;letter-spacing:0.5px;">Evaluator Comments &amp; Feedback</strong>
+    <div style="border:1px solid #ddd;border-radius:4px;min-height:60px;margin-top:6px;padding:6px;"></div>
+  </div>
+
+  <!-- ══ SIGNATURES ══ -->
+  <div class="signature-row">
+    <div class="sig-block">
+      <label>Evaluator Signature</label>
+      <div class="sig-line"></div>
+    </div>
+    <div class="sig-block">
+      <label>Team Leader Signature</label>
+      <div class="sig-line"></div>
+    </div>
+    <div class="sig-block">
+      <label>Date</label>
+      <div class="sig-line"></div>
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ══ -->
+  <div class="page-footer">
+    <span>EUE — University of East London Egypt &nbsp;·&nbsp; Business Information Systems</span>
+    <span>grading-sheet v1.0 · Spring 2025</span>
+  </div>
+
+</body>
+</html>

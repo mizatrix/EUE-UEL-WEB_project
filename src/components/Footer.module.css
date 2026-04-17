@@ -1,0 +1,29 @@
+.footer {
+    text-align: center;
+    padding: 2.5rem 0;
+    border-top: 1px solid rgba(99, 102, 241, 0.1);
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 5vw, 2rem);
+}
+
+.copyright {
+    color: #64748b;
+    font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+    margin-bottom: 0.4rem;
+}
+
+.credits {
+    color: #94a3b8;
+    font-size: clamp(0.75rem, 0.7rem + 0.25vw, 0.85rem);
+}
+
+.credits strong {
+    color: #6366f1;
+    font-weight: 600;
+}

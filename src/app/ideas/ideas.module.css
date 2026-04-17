@@ -1,0 +1,319 @@
+/* ═══════════════════════════════════════════
+   Ideas Page — Bright Theme
+   ═══════════════════════════════════════════ */
+.ideasPage {
+    min-height: 100vh;
+}
+
+.heroSection {
+    padding: clamp(4rem, 10vw, 7rem) 0 clamp(2rem, 4vw, 3rem);
+    text-align: center;
+}
+
+.heroContent {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 5vw, 2rem);
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.2rem;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(244, 63, 94, 0.06));
+    color: #6366f1;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.82rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(99, 102, 241, 0.15);
+}
+
+.title {
+    font-size: clamp(2rem, 1.75rem + 1.25vw, 3rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #1e293b, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.8rem;
+}
+
+.subtitle {
+    color: #64748b;
+    max-width: 550px;
+    margin: 0 auto;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Sections */
+.section {
+    padding: 0 0 clamp(3rem, 8vw, 5rem);
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 5vw, 2rem);
+}
+
+.sectionTitle {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.sectionTitle i {
+    color: #6366f1;
+}
+
+/* Idea Cards */
+.ideasGrid {
+    display: grid;
+    gap: 1rem;
+}
+
+.ideaCard {
+    display: flex;
+    gap: 1.2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(99, 102, 241, 0.1);
+    border-radius: 16px;
+    transition: all 0.3s;
+}
+
+.ideaCard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.08);
+}
+
+.ideaIcon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: white;
+    flex-shrink: 0;
+}
+
+.ideaBody {
+    flex: 1;
+}
+
+.ideaTitle {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.3rem;
+}
+
+.ideaDesc {
+    font-size: 0.88rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+}
+
+.ideaMeta {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.ideaTag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.tagApproved {
+    background: rgba(16, 185, 129, 0.08);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+.tagPending {
+    background: rgba(245, 158, 11, 0.08);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.15);
+}
+
+.tagInstructor {
+    background: rgba(99, 102, 241, 0.08);
+    color: #6366f1;
+    border: 1px solid rgba(99, 102, 241, 0.15);
+}
+
+.tagStudent {
+    background: rgba(139, 92, 246, 0.08);
+    color: #8b5cf6;
+    border: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+/* Proposal Form */
+.proposalCard {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.06);
+}
+
+.proposalHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.proposalHeader i {
+    font-size: 1.2rem;
+    color: #6366f1;
+}
+
+.proposalHeader h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0;
+}
+
+.formGroup {
+    margin-bottom: 1.2rem;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #1e293b;
+}
+
+.required {
+    color: #f43f5e;
+}
+
+.formGroup input,
+.formGroup textarea,
+.formGroup select {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 12px;
+    color: #1e293b;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus,
+.formGroup select:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+    background: white;
+}
+
+.formGroup input::placeholder,
+.formGroup textarea::placeholder {
+    color: #94a3b8;
+}
+
+.submitBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 2rem;
+    background: linear-gradient(135deg, #6366f1, #f43f5e);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: inherit;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.submitBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+}
+
+.submitBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Alerts */
+.alert {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.2rem;
+    border-radius: 12px;
+    font-size: 0.88rem;
+}
+
+.alertError {
+    background: rgba(244, 63, 94, 0.08);
+    border: 1px solid rgba(244, 63, 94, 0.2);
+    color: #e11d48;
+}
+
+.alertSuccess {
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    color: #059669;
+}
+
+/* Login Prompt */
+.loginPrompt {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px dashed rgba(99, 102, 241, 0.2);
+    border-radius: 16px;
+    color: #64748b;
+}
+
+.loginPrompt a {
+    color: #6366f1;
+    font-weight: 600;
+}
+
+/* Empty */
+.emptyState {
+    text-align: center;
+    padding: 3rem;
+    color: #94a3b8;
+}
+
+.emptyState i {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    display: block;
+    color: rgba(99, 102, 241, 0.25);
+}

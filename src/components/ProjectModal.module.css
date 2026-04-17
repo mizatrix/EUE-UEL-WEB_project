@@ -1,0 +1,203 @@
+/* ═══════════════════════════════════════════
+   Project Modal — Bright Theme
+   ═══════════════════════════════════════════ */
+.modalOverlay {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.modalOverlayActive {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.3);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modalContent {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    border-radius: 24px;
+    max-width: 600px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 2.5rem;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(99, 102, 241, 0.15);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.closeBtn {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    background: rgba(99, 102, 241, 0.06);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #64748b;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+}
+
+.closeBtn:hover {
+    background: rgba(244, 63, 94, 0.08);
+    color: #f43f5e;
+}
+
+.modalHeader {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.modalIcon {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--accent, #6366f1), #f43f5e);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    flex-shrink: 0;
+}
+
+.modalTitle {
+    font-size: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 0;
+    line-height: 1.3;
+}
+
+.modalCategory {
+    font-size: 0.82rem;
+    color: var(--accent, #6366f1);
+    font-weight: 600;
+    margin-top: 0.2rem;
+}
+
+.modalDesc {
+    color: #64748b;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.featuresTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 1rem;
+}
+
+.featuresTitle i {
+    color: #6366f1;
+}
+
+.featuresList {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.featureItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.6rem 0.8rem;
+    background: rgba(99, 102, 241, 0.04);
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: #475569;
+    line-height: 1.4;
+}
+
+.featureItem i {
+    color: #10b981;
+    margin-top: 0.15rem;
+    flex-shrink: 0;
+}
+
+.datasetLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(244, 63, 94, 0.05));
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    border-radius: 10px;
+    color: #6366f1;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.88rem;
+    transition: all 0.3s;
+}
+
+.datasetLink:hover {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(244, 63, 94, 0.08));
+    transform: translateY(-1px);
+}
+
+.datasetSection {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+.datasetSection h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.datasetSection h4 i {
+    color: #6366f1;
+}
+
+@media (max-width: 768px) {
+    .modalOverlay,
+    .modalOverlayActive {
+        padding: 1rem;
+    }
+    .modalContent {
+        padding: 1.5rem;
+        border-radius: 20px;
+    }
+}

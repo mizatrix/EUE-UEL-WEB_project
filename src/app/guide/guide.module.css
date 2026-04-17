@@ -1,0 +1,299 @@
+/* ═══════════════════════════════════════════
+   Guide Page — Bright Theme
+   ═══════════════════════════════════════════ */
+.guidePage {
+    min-height: 100vh;
+}
+
+/* Hero */
+.guideHero {
+    padding: clamp(4rem, 10vw, 7rem) 0 clamp(3rem, 6vw, 5rem);
+    text-align: center;
+    position: relative;
+}
+
+.guideHero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(99, 102, 241, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.guideHeroContent {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 5vw, 2rem);
+    position: relative;
+}
+
+.guideBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.2rem;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(244, 63, 94, 0.06));
+    color: #6366f1;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.82rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(99, 102, 241, 0.15);
+}
+
+.guideTitle {
+    font-size: clamp(2rem, 1.75rem + 1.25vw, 3rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #1e293b, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+}
+
+.guideSubtitle {
+    color: #64748b;
+    max-width: 550px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.guideSubtitle strong {
+    color: #1e293b;
+}
+
+/* Stats */
+.guideStats {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.guideStat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #64748b;
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.guideStat span {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #6366f1;
+    line-height: 1.2;
+}
+
+/* Steps */
+.stepsSection {
+    padding: 0 0 clamp(4rem, 10vw, 8rem);
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 5vw, 2rem);
+}
+
+.stepCard {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(99, 102, 241, 0.1);
+    border-radius: 20px;
+    transition: all 0.3s;
+    box-shadow: 0 2px 12px rgba(99, 102, 241, 0.04);
+}
+
+.stepCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(99, 102, 241, 0.1);
+    border-color: var(--step-color, rgba(99, 102, 241, 0.2));
+}
+
+.stepNum {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    font-weight: 700;
+    gap: 0.1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.stepNum i {
+    font-size: 1.1rem;
+}
+
+.stepBody {
+    flex: 1;
+}
+
+.stepTitle {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.8rem;
+}
+
+.stepList {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.stepList li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.4rem 0;
+    font-size: 0.9rem;
+    color: #475569;
+    line-height: 1.5;
+}
+
+.stepList li::before {
+    content: '→';
+    color: var(--step-color, #6366f1);
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.stepList li strong {
+    color: #1e293b;
+}
+
+.stepList li code {
+    background: rgba(99, 102, 241, 0.08);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    color: #6366f1;
+}
+
+.stepList li a {
+    color: #6366f1;
+    font-weight: 600;
+}
+
+/* Downloads */
+.downloadsSection {
+    padding-bottom: clamp(3rem, 8vw, 5rem);
+}
+
+.downloadsCard {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(99, 102, 241, 0.12);
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+}
+
+.downloadsCard h2 {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.downloadsCard h2 i {
+    color: #6366f1;
+}
+
+.downloadsCard p {
+    color: #64748b;
+    margin-bottom: 1.5rem;
+}
+
+.downloadButtons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.downloadBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.8rem 1.5rem;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: #1e293b;
+    transition: all 0.3s;
+}
+
+.downloadBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
+}
+
+.fileSize {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+/* CTA */
+.ctaSection {
+    text-align: center;
+    padding: clamp(3rem, 8vw, 5rem) 0 clamp(4rem, 10vw, 6rem);
+}
+
+.ctaSection h2 {
+    font-size: clamp(1.5rem, 1.35rem + 0.75vw, 2rem);
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.ctaSection p {
+    color: #64748b;
+    margin-bottom: 1.5rem;
+}
+
+.ctaButtons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .stepCard {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .guideStats {
+        gap: 1.5rem;
+    }
+    .downloadButtons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
